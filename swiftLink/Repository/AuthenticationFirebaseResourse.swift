@@ -10,7 +10,7 @@
 import Foundation
 import FirebaseAuth
 
-class AuthenticationFirebaseResourse {
+final class AuthenticationFirebaseResourse {
     
     func createNuewUser(email: String, password: String, completion: @escaping (Result<User, Error>) -> Void) {
         

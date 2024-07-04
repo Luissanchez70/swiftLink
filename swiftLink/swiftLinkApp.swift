@@ -27,7 +27,7 @@ struct swiftLinkApp: App {
             if let _ = authenticationViewModel.user {
                 HomeView()
             } else {
-                AuthenticationView()
+                AuthenticationView(authenticationViewModel: authenticationViewModel)
             }
         }
     }

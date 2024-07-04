@@ -7,7 +7,7 @@
 
 import Foundation
 
-class AuthenticationViewModel: ObservableObject {
+final class AuthenticationViewModel: ObservableObject {
     
     private let authenticationRepository: AuthenticationRepository
     @Published var user: User?
