@@ -41,8 +41,13 @@ struct LoginAuthenticationView: View {
             Button(action: {
                 print("login")
             }, label: {
-                Text("Login email")
+                Text("Login with email").padding()
             })
+            .frame(width: 250)
+            .tint(Color.white)
+            .background(.orange)
+            .cornerRadius(10)
+            
             Spacer()
             
         }.padding()

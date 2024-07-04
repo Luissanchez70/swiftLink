@@ -35,12 +35,23 @@ struct RegisterAuthenticationView: View {
                 .frame(width: 250)
                 .keyboardType(.default)
                 .border(Color.gray)
+                
             
             Button(action: {
                 authenticationViewModel.createNewUser(email: userEmail, password: userPassword)
             }, label: {
-                Text("Register email")
+                Text("Register email").padding()
             })
+            .frame(width: 250)
+            .tint(Color.white)
+            .background(.orange)
+            .cornerRadius(10)
+        
+            if let error = authenticationViewModel.errorMessege {
+                Text(error)
+                    .foregroundStyle(.red)
+                    .bold()
+            }
             Spacer()
         }
         .padding()
