@@ -20,12 +20,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct swiftLinkApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @ObservedObject var authenticationViewModel: AuthenticationViewModel = AuthenticationViewModel()
+    @StateObject var authenticationViewModel: AuthenticationViewModel = AuthenticationViewModel()
     
     var body: some Scene {
         WindowGroup {
             if let _ = authenticationViewModel.user {
-                HomeView()
+                HomeView(authenticationViewModel: authenticationViewModel)
             } else {
                 AuthenticationView(authenticationViewModel: authenticationViewModel)
             }

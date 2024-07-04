@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct DismissView: View {
-    @Environment(\.dismiss) var dismiss
     
+    @ObservedObject var authenticationViewModel: AuthenticationViewModel
+    @Environment(\.dismiss) var dismiss
+
     var body: some View {
         HStack {
             Spacer()
             Button(action: {
+                authenticationViewModel.errorMessege = nil
                 dismiss()
             }, label: {
                 Image(systemName: "xmark.circle.fill")
@@ -28,5 +31,5 @@ struct DismissView: View {
 }
 
 #Preview {
-    DismissView()
+    DismissView(authenticationViewModel: AuthenticationViewModel())
 }

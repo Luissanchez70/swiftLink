@@ -15,7 +15,7 @@ struct RegisterAuthenticationView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 10) {
-            DismissView()
+            DismissView(authenticationViewModel: authenticationViewModel)
             Image("firebaselogo")
                 .resizable()
                 .scaledToFit()

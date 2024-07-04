@@ -8,11 +8,23 @@
 import SwiftUI
 
 struct HomeView: View {
+    
+    @ObservedObject var authenticationViewModel: AuthenticationViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Button {
+                authenticationViewModel.logout()
+            } label: {
+                Text("Logout")
+            }
+
+            
+        }
+        
     }
 }
 
 #Preview {
-    HomeView()
+    HomeView(authenticationViewModel: AuthenticationViewModel())
 }

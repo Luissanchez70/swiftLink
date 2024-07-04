@@ -15,6 +15,11 @@ final class AuthenticationViewModel: ObservableObject {
     
     init(authenticationRepository: AuthenticationRepository = AuthenticationRepository()) {
         self.authenticationRepository = authenticationRepository
+        getCurrentUser()
+    }
+    
+    func getCurrentUser() {
+        self.user = authenticationRepository.getCurrentUser()
     }
     
     func createNewUser(email: String, password: String) {
@@ -27,6 +32,29 @@ final class AuthenticationViewModel: ObservableObject {
                 self.errorMessege = error.localizedDescription
             }
             
+        }
+    }
+    
+    func login(email: String, password: String) {
+        authenticationRepository.login(email: email, password: password) {  result in
+            
+            switch result {
+            case .success(let user):
+                self.user = user
+            case .failure(let error):
+                self.errorMessege = error.localizedDescription
+            }
+            
+        }
+    }
+    
+    func logout() {
+        
+        do {
+            try authenticationRepository.logout()
+            self.user = nil
+        } catch let error {
+            print(error.localizedDescription)
         }
     }
 }

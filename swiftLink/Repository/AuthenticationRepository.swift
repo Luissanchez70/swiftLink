@@ -15,8 +15,21 @@ final class AuthenticationRepository {
         self.authenticationFirebaseResource = authenticationFirebaseResource
     }
     
+    func getCurrentUser() -> User? {
+        authenticationFirebaseResource.getCurrentUser()
+    }
+    
     func createnewUser(email: String, password: String, completion: @escaping (Result<User, Error>) -> Void) {
         
         authenticationFirebaseResource.createNuewUser(email: email, password: password, completion: completion)
+    }
+    
+    func login(email: String, password: String, completion: @escaping (Result<User, Error>) -> Void) {
+        
+        authenticationFirebaseResource.login(email: email, password: password, completion: completion)
+    }
+    
+    func logout() throws {
+        try authenticationFirebaseResource.logout()
     }
 }

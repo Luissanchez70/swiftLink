@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct LoginAuthenticationView: View {
+    
+    @ObservedObject var authenticationViewModel: AuthenticationViewModel
     @State var userEmail: String = ""
     @State var userPassword: String = ""
 
     var body: some View {
         VStack {
-            DismissView()
+            DismissView(authenticationViewModel: authenticationViewModel)
             Image("firebaselogo")
                 .resizable()
                 .scaledToFit()
@@ -27,19 +29,15 @@ struct LoginAuthenticationView: View {
                 .frame(width: 250)
                 .keyboardType(.emailAddress)
                 .border(Color.gray)
-                .onChange(of: userEmail) {
-                    print(userEmail)
-                }
+            
             SecureField("user email", text: $userPassword)
                 .padding(10)
                 .frame(width: 250)
                 .keyboardType(.emailAddress)
                 .border(Color.gray)
-                .onChange(of: userPassword) {
-                    print(userPassword)
-                }
+               
             Button(action: {
-                print("login")
+                authenticationViewModel.login(email: userEmail, password: userPassword)
             }, label: {
                 Text("Login with email").padding()
             })
@@ -48,6 +46,12 @@ struct LoginAuthenticationView: View {
             .background(.orange)
             .cornerRadius(10)
             
+            if let error = authenticationViewModel.errorMessege {
+                Text(error)
+                    .foregroundStyle(.red)
+                    .bold()
+            }
+            
             Spacer()
             
         }.padding()
@@ -55,5 +59,5 @@ struct LoginAuthenticationView: View {
 }
 
 #Preview {
-    LoginAuthenticationView()
+    LoginAuthenticationView(authenticationViewModel: AuthenticationViewModel())
 }
